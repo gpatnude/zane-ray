@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:body>
+
+	<p:dialog header="Create a new course" widgetVar="coursecreator" modal="true" height="480" width="360">
+
+	    <h:form>
+	    
+	    	<h2>Create a new course</h2>
+	    
+	    	<table>
+	    	
+	    		<tr>
+	    		
+	    			<td colspan="2">
+	    			
+	    				<p>Use the form to fill out the new class. When you are finished, press the submit button at the bottom to save your work.</p>
+	    			
+	    			</td>
+	    		
+	    		</tr>
+	    	
+				<tr>
+
+					<td class="right" style="vertical-align: middle;"><label>Course Name:</label></td>
+					<td class="left" style="vertical-align: middle;"><input type="text" name="courseName" placeholder="Enter the course name"/></td>
+
+				</tr>
+
+				<tr>
+
+					<td class="right" style="vertical-align: middle;"><label>Course Instructor:</label></td>
+					<td class="left" style="vertical-align: middle;">
+					
+						<select name="person" required="true" placeholder="Choose the person teaching the course">
+						
+							<option value="-1">Select the instructor</option>
+						
+						</select>
+					
+					</td>	    	 
+
+		    	</tr>
+		    	
+		    	<tr>
+		    	
+					<td class="right" style="vertical-align: middle;"><label>Start Date:</label></td>
+					<td class="left" style="vertical-align: middle;">
+					
+						<p:calendar id="startDate" value="#{coursesView.newCourse.startDate}" placeholder="Set the start date" />
+					
+					</td>
+		    	   
+		    	</tr>
+		    	  
+		    	<tr>
+
+			    	<td class="right" style="vertical-align: middle;"><label>End Date:</label></td>
+					<td class="left" style="vertical-align: middle;">
+					
+						<p:calendar id="endDate" value="#{coursesView.newCourse.endDate}" placeholder="Set the end date" />
+					
+					</td>
+
+		    	</tr>	  
+		    	
+		    	<tr>	    	
+
+					<td class="centered" colspan="2" style="vertical-align: middle; text-align: middle;">
+			    	
+			    		<p:commandButton value="Cancel" type="button" onclick="PF('coursecreator').hide();" />
+			    		<span style="width: 11px;">&nbsp;</span> 
+			    		<p:commandButton type="submit" value="Submit" ajax="true" />
+			    	
+			    	</td>
+
+		    	</tr> 
+			
+			</table>
+		    
+	    </h:form>
+
+	</p:dialog>   
+
+	<h:form>
+	
+		<div id="createcoursewrapper" style="width: 100%; height: 56px;">
+		
+			<p:commandButton type="button" onclick="PF('coursecreator').show();" style="float: right; margin: 7px;" value="Create a new course" ajax="false" />
+			
+		</div>
+
+		<p:dataTable id="courselist" var="course" value="#{coursesView.activeCourses}"
+			rows="25" paginator="true"
+			resizableColumns="true" 
+			paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} {Exporters}"
+			rowsPerPageTemplate="10,25,50">
+
+			<f:facet name="{Exporters}">
+
+				<p:commandButton value="Export as Excel" ajax="false">
+				
+					<p:dataExporter type="xls" target="courselist" fileName="courses" />
+					
+				</p:commandButton>
+
+				<p:commandButton value="Export as PDF" ajax="false">
+				
+					<p:dataExporter type="pdf" target="courselist" fileName="courses" />
+					
+				</p:commandButton>
+
+				<p:commandButton value="Export as XML" ajax="false">
+					
+					<p:dataExporter type="xml" target="courselist" fileName="courses" />
+				
+				</p:commandButton>
+
+				
+			</f:facet>
+			
+			<p:column headerText="Course ID">
+
+				<h:outputText value="#{course.id}" />
+
+			</p:column>
+
+			<p:column headerText="Course/Class Name">
+
+				<h:outputText value="#{course.courseName}" />
+
+			</p:column>
+
+			<p:column headerText="Instructor">
+
+				<h:outputText value="#{course.instructor.firstName} #{course.instructor.lastName}" />
+			
+			</p:column>
+
+			<p:column headerText="Student Count">
+
+				<h:outputText value="#{course.studentCount}" />
+
+			</p:column>
+
+			<p:column headerText="Start Date">
+
+				<h:outputText value="#{course.startDate}" />
+
+			</p:column>
+
+			<p:column headerText="Finish Date">
+
+				<h:outputText value="#{course.endDate}" />
+
+			</p:column>
+
+		</p:dataTable>
+
+	</h:form>
+
+</h:body>
+
+<script type="text/javascript" lang="javascript">
+
+	$(document).ready(function() {
+		
+		// alert("Yep.");
+		// $("#startDate").datepicker();
+		// $("#endDate").datepicker();
+		
+		
+	});	
+	
+
+</script>
+
+</html>

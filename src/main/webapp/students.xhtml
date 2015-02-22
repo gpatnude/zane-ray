@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:body>
+
+	<p:dialog header="Create a new course" widgetVar="personcreator" modal="true" height="480" width="360">
+
+	   
+	    <h:form>
+	    
+	    	<h2>Create a new person</h2>
+	    
+	    	<table>
+	    	
+	    		<tr>
+	    		
+	    			<td colspan="2">
+	    			
+	    				<p>Use the form to fill out the new person record. When you are finished, press the submit button at the bottom to save your work.</p>
+	    			
+	    			</td>
+	    		
+	    		</tr>
+	    	
+				<tr>
+
+					<td class="right" style="vertical-align: middle;"><label>First Name:</label></td>
+					<td class="left" style="vertical-align: middle;">
+					
+						<input type="text" required="true" name="firstName" value="#{newPerson.firstName}" placeholder="Enter the person's first name"/>
+						
+					</td>
+
+				</tr>
+				<tr>
+
+					<td class="right" style="vertical-align: middle;"><label>First Name:</label></td>
+					<td class="left" style="vertical-align: middle;">
+					
+						<input type="text" required="true" name="firstName" value="#{newPerson.firstName}" placeholder="Enter the person's first name"/>
+						
+					</td>
+
+				</tr>
+
+				<tr>
+
+					<td class="right" style="vertical-align: middle;"><label>Last Name:</label></td>
+					<td class="left" style="vertical-align: middle;">
+					
+						<input type="text" required="true" name="lastName" value="#{newPerson.lastName}" placeholder="Enter the person's last name"/>
+						
+					</td>
+
+				</tr>
+
+				<tr>
+
+					<td class="right" style="vertical-align: middle;"><label>Person Role/Type:</label></td>
+					<td class="left" style="vertical-align: middle;">
+					
+						<select name="personType" required="true" placeholder="Choose this person's primary role">
+						
+							<option value="-1">Make a selection</option>
+							<option value="1">Student</option>
+							<option value="2">Staff/Instructor</option>
+						
+						</select>
+					
+					</td>	    	 
+
+		    	</tr>
+		    	
+		    	<tr>
+		    	
+					<td class="right" style="vertical-align: middle;"><label>Birthday:</label></td>
+					<td class="left" style="vertical-align: middle;">
+					
+						<p:calendar id="birthday" value="#{newPerson.birthday}" placeholder="Set the persons birthday" />
+					
+					</td>
+		    	   
+		    	</tr>
+		    	
+		    	<tr>	    	
+
+					<td class="centered" colspan="2" style="vertical-align: middle; text-align: middle;">
+			    	
+			    		<p:commandButton value="Cancel" type="button" onclick="PF('personcreator').hide();" />
+			    		<span style="width: 11px;">&nbsp;</span> 
+			    		<p:commandButton type="submit" value="Submit" ajax="true" />
+			    	
+			    	</td>
+
+		    	</tr> 
+			
+			</table>
+		    
+	    </h:form>
+
+	</p:dialog>   
+
+	<h:form>
+	
+		<div id="createcoursewrapper" style="width: 100%; height: 56px;">
+		
+			<p:commandButton type="button" onclick="PF('personcreator').show();" style="float: right; margin: 7px;" value="Create a new person" ajax="false" />
+			
+		</div>
+
+		<p:dataTable id="personlist" var="person" value="#{personsView.allStudents}"
+			rows="25" paginator="true" 
+			resizableColumns="true" 
+			paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} {Exporters}"
+			rowsPerPageTemplate="10,25,50">
+
+
+			<f:facet name="{Exporters}">
+
+				<p:commandButton value="Export as Excel" ajax="false">
+				
+					<p:dataExporter type="xls" target="personlist" fileName="persons" />
+					
+				</p:commandButton>
+
+				<p:commandButton value="Export as PDF" ajax="false">
+				
+					<p:dataExporter type="pdf" target="personlist" fileName="persons" />
+					
+				</p:commandButton>
+
+				<p:commandButton value="Export as XML" ajax="false">
+					
+					<p:dataExporter type="xml" target="personlist" fileName="persons" />
+				
+				</p:commandButton>
+
+				
+			</f:facet>
+			
+			<p:column headerText="ID">
+				<h:outputText value="#{person.id}" />
+			</p:column>
+
+			<p:column headerText="First Name">
+				<h:outputText value="#{person.firstName}" />
+			</p:column>
+
+			<p:column headerText="Last Name">
+				<h:outputText value="#{person.lastName}" />
+			</p:column>
+
+			<p:column headerText="Person Type">
+				<h:outputText
+					value="#{person.personType}" />
+			</p:column>
+
+			<p:column headerText="Birthday">
+			
+				<h:outputText value="#{person.birthday}">
+				
+					<f:convertDateTime pattern="MM/dd/yyyy" />
+				
+				</h:outputText>
+			
+			</p:column>
+			
+			<p:column headerText="Active">
+				<h:outputText value="#{person.active} " />
+			</p:column>
+
+		</p:dataTable>
+
+	</h:form>
+
+</h:body>
+
+<script type="text/javascript" lang="javascript">
+
+	$(document).ready(function() {
+		
+		// alert("Yep.");
+		// $("#startDate").datepicker();
+		// $("#endDate").datepicker();
+		
+		
+	});	
+	
+
+</script>
+
+</html>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configure class="org.mortbay.jetty.webapp.WebAppContext">
+
+	<!-- DEFINE THE MYSQL CONNECTION AS A JNDI RESOURCE -->
+	<New id="jdbc/ZRTest" class="org.eclipse.jetty.plus.jndi.Resource">
+
+		<Arg></Arg>
+
+		<Arg>jdbc/ZRTest</Arg>
+
+		<Arg>
+
+			<New class="com.mysql.jdbc.jdbc2.optional.MysqlConnectionPoolDataSource">
+
+				<Set name="url">jdbc:mysql://209.208.108.109:3306/zrtest</Set>
+				<Set name="username">zrtest</Set>
+				<Set name="password">zrt3st</Set>
+
+			</New>
+
+		</Arg>
+
+	</New>
+	
+</Configure>
+	

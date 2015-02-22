@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+
+	<title>${globalSettings.applicationTitle}</title>
+	<script src="//code.jquery.com/ui/1.11.3/jquery-ui.js"></script>
+	<link href="./styles/default.css" rel="stylesheet" type="text/css" />
+	<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
+	<base href="/" />
+
+</h:head>
+
+<h:body>
+
+	<div id="nav-header" class="bigdiv" style="min-height: 45px;">
+	
+		<ui:include src="/components/header.xhtml" />
+	
+	</div>
+	
+
+	<div id="wrapped" class="bigdiv">
+
+		<h:form>
+	
+			<p:panel header="${globalSettings.applicationTitle}">
+		
+			    <p:tabView style="margin-top: 21px;">
+			    
+			        <p:tab title="Classes">
+			        
+			            <h:panelGrid columns="2" cellpadding="10">
+
+							<ui:include src="/classes.xhtml" />
+							
+			            </h:panelGrid>
+			            
+			        </p:tab>
+			        
+			        <p:tab title="Students">
+			        
+			            <h:panelGrid columns="2" cellpadding="10">
+
+							<ui:include src="/students.xhtml" />			            
+
+			            </h:panelGrid>
+			            
+			        </p:tab>
+	
+			        <p:tab title="Staff">
+			        
+			            <h:panelGrid columns="2" cellpadding="10">
+
+							<ui:include src="/staff.xhtml" />			            
+
+			            </h:panelGrid>
+			            
+			        </p:tab>
+
+				    <p:tab title="Read Me !">
+				        
+				            <h:panelGrid columns="2" cellpadding="10">
+	
+								<ui:include src="/readme.xhtml" />			            
+	
+				            </h:panelGrid>
+				            
+				    </p:tab>
+				    
+				    <p:tab title="Schema &amp; RDBMS">
+				        
+				            <h:panelGrid columns="2" cellpadding="10">
+	
+								<ui:include src="/schema.xhtml" />			            
+	
+				            </h:panelGrid>
+				            
+				    </p:tab>
+
+				</p:tabView>
+					
+			</p:panel>
+	
+		</h:form>
+	
+	</div>
+	
+</h:body>
+
+</html>

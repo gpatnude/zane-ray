@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:body>
+
+	<h:form>
+
+		<p:panel header="Schema &amp; RDBMS">
+		
+		<p>Even though I did not actually connect this demonstration to a database, I do have the beginnings of a working schema in my head. I decided to capture that here. Again, I'd like to iterate that I spent way too much time on this project and had to draw the line somewhere. I do have hundreds of thousands of lines of working code that I could share if you are still uncertain as to my abilities.</p>
+		
+<pre class="prettyprint">
+		
+	CREATE TABLE lu_person_type (
+	
+		id integer AUTO_INCREMENT PRIMARY KEY,
+		
+		type_desc varchar(72) NOT NULL,
+
+		create_date timestamp NOT NULL DEFAULT now(),
+		active boolean DEFAULT true
+		
+	);	
+	
+
+	CREATE TABLE persons (
+	
+		id integer AUTO_INCREMENT PRIMARY KEY,
+
+		lu_person_type integer not null,			
+		first_name varchar(60) not null,
+		last_name varchar(60) not null,
+		birthdate date not null,
+
+		create_date timestamp NOT NULL DEFAULT now(),
+		active BOOLEAN DEFAULT true,
+		
+		FOREIGN KEY (lu_person_type) REFERENCES lu_person_type(id)
+
+	);
+
+	CREATE TABLE courses (
+	
+		id integer AUTO_INCREMENT PRIMARY KEY,
+		
+		course_name varchar(120) NOT NULL,
+		instructor_persons_id integer NULL,
+		course_start_date date NOT NULL,
+		course_end_date date NOT NULL,
+		
+		create_date timestamp NOT NULL DEFAULT now(),
+		active BOOLEAN DEFAULT true,
+		
+		FOREIGN KEY (instructor_persons_id) REFERENCES persons(id)		
+	
+	);
+
+
+</pre>
+
+		</p:panel>
+
+	</h:form>
+
+</h:body>
+
+</html>

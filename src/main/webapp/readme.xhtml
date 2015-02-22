@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:body>
+
+		<h:form>
+	
+			<p:panel header="Read Me !" >
+			
+				<p>Normally, a data-abstraction layer [DAL], data-acccess object [DAO], or some other ORM such as Hibernate would be used for database access to support the data models. In this project, due to my wanting to restrict my time to something reasonable [12 hours], I did not implement an actual database. However, I did provide a MySQL schema [see the next tab to the right] that would be used for the RDBMS. In this demonstration, I create and populate the UI with dynamically-generated data instead of dynamically retrieving the data from a persistence layer - I do this a lot when prototyping a system as I have found it easier to modify your models and modify or create the RDBMS once the customer approves the UI and functionality - this is especially true when using 'old-school' ORM tools that need to be mapped in XML. I prefer model-driven development because you don't waste time developing RDBMS tables, relations, queries, stored procedures, etc., that are in a constant state of iteration; instead, you quickly adapt your models and when the models are done iterating you reverse-implement them into your persistence layer.</p>
+			
+				<p>The following information is provided as background / amplifying information regarding this project:</p>
+				<ul>
+				
+					<li>This implementation is not complete. This is a technology/ability demonstration and not ready for productiokn</li>
+					<li>The project uses PrimeFaces as the main technology behind the JSF implementation [<a href="http://www.primefaces.org/showcase/" target = "_new">http://www.primefaces.org/showcase/</a>]</li>
+					<li>The system is built following a formal MVC design pattern [JSF enforces this concept quite nicely as do other frameworks like Spring, Tapestry, Struts and a few others.</li>
+					<li>A complete system would likely be extended to include the following modules:</li>
+					
+						<ul>
+						
+							<li>Course completion &amp; progress tracking</li>
+							<li>Classroom management</li>
+							<li>Staff/Instructor management</li>
+							<li>Course calendaring [semester management]</li>
+							<li>Test &amp; grade management</li>
+							<li>(further analysis recommended)</li>
+						
+						</ul>
+						
+					<li>There are a ton of business rules NOT IMPLEMENTED in this demonstration. Un-implemented rules include:</li>
+					
+						<ul>
+						
+							<li>Instructors cannot be a student in the same course they are teaching while teaching it</li>
+							<li>Students cannot be enrolled in a calendared course more than once</li>
+							<li>Different instructors can be assigned to teach the same course in different classrooms</li>
+							<li>A student cannot attend more than one class in any calendared time slot</li>
+							<li>Instructors can also be students taking other courses as long as all courses are in different time slots</li>
+							<li>Students can also be instructors teaching other courses as long as all courses are in different time slots</li>
+							<li>(further analysis recommended)</li>
+						
+						</ul>						
+								
+				</ul>				
+		
+			</p:panel>
+	
+		</h:form>
+	
+</h:body>
+
+</html>
